@@ -1,19 +1,18 @@
 <?php
 
-$servername = "localhost"; 
-$username = "root";        
-$password = "";          
-$dbname = "vitor1d";
+// Configurações do banco
+$host    = "localhost";   // normalmente não precisa alterar
+$usuario = "root";        // substituir se seu usuário não for root
+$senha   = "";            // substituir se você tiver senha no MySQL
+$banco   = "vitor1d";       // substituir pelo nome do seu banco criado no phpMyAdmin
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Conexão MySQLi
+$conexao = mysqli_connect($host, $usuario, $senha, $banco);
 
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
-} else {
-    echo "Conexão bem-sucedida!";
+if (!$conexao) {
+    die("Erro ao conectar: " . mysqli_connect_error());
 }
 
-// Fechando a conexão
-$conn->close();
+// SENSITIVE CASE suportar acentos e Ç
+mysqli_set_charset($conexao, "utf8");
 ?>
-
